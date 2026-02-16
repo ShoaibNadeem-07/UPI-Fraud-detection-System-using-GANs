@@ -12,6 +12,7 @@ app = Flask(__name__)
 CORS(app, origins=[
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://safe-pay-ai.vercel.app",
     "https://safe-pay-ai-361y.vercel.app",
     os.environ.get("FRONTEND_URL", "http://localhost:5173"),
 ])
