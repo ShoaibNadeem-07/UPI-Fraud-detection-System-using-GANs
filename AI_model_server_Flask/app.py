@@ -9,7 +9,11 @@ import numpy as np
 from feature_aggregator import FeatureAggregator
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "http://localhost:5173",
+    "http://localhost:3000",
+    os.environ.get("FRONTEND_URL", "http://localhost:5173"),
+])
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -416,4 +420,5 @@ def analyze_dataset():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
