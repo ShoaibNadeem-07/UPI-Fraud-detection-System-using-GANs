@@ -4,6 +4,89 @@ import { predictUPIFraud } from '../services/api';
 import { getUserData, saveTransaction } from '../firebase/config';
 import ShapChart from '../components/ShapChart';
 
+const DEMO_SCENARIOS = [
+    {
+        scenario: "Normal Netflix Subscription",
+        recipient: "netflix@hdfc",
+        amount: 649,
+        expected_risk: "LOW",
+        description: "Regular monthly subscription payment",
+        icon: "🎬"
+    },
+    {
+        scenario: "Phishing Attack - Fake Netflix",
+        recipient: "netf1ix@unknown",
+        amount: 649,
+        expected_risk: "HIGH",
+        description: "Payment to phishing ID impersonating Netflix",
+        icon: "🎣"
+    },
+    {
+        scenario: "Food Delivery Normal",
+        recipient: "swiggy@paytm",
+        amount: 450,
+        expected_risk: "LOW",
+        description: "Regular food delivery payment",
+        icon: "🍕"
+    },
+    {
+        scenario: "Payment to Blacklisted ID",
+        recipient: "scammer001@ybl",
+        amount: 5000,
+        expected_risk: "HIGH",
+        description: "Attempted payment to known fraudster",
+        icon: "🚫"
+    },
+    {
+        scenario: "Trusted P2P Transfer",
+        recipient: "priya.patel@ybl",
+        amount: 2000,
+        expected_risk: "LOW",
+        description: "Transfer between trusted users",
+        icon: "🤝"
+    },
+    {
+        scenario: "High Value to New Merchant",
+        recipient: "newshop2026@paytm",
+        amount: 50000,
+        expected_risk: "MEDIUM",
+        description: "Large payment to recently registered merchant",
+        icon: "🏪"
+    },
+    {
+        scenario: "KBC Prize Scam",
+        recipient: "kbc.prize@fake",
+        amount: 10000,
+        expected_risk: "HIGH",
+        description: "Payment for fake lottery/prize claim",
+        icon: "🎰"
+    },
+    {
+        scenario: "OLX Advance Payment Fraud",
+        recipient: "olx.buyer@unknown",
+        amount: 25000,
+        expected_risk: "HIGH",
+        description: "Advance payment for OLX listing scam",
+        icon: "📦"
+    },
+    {
+        scenario: "New User to Crypto Trader",
+        recipient: "crypto.trader@suspicious",
+        amount: 100000,
+        expected_risk: "HIGH",
+        description: "New account sending large sum to suspicious ID",
+        icon: "💰"
+    },
+    {
+        scenario: "Suspicious Amount Pattern",
+        recipient: "netflix@hdfc",
+        amount: 64900,
+        expected_risk: "MEDIUM",
+        description: "Abnormally high amount for streaming service",
+        icon: "📊"
+    }
+];
+
 const UPISimulator = ({ user, onLogin }) => {
     const [recipientUpi, setRecipientUpi] = useState('');
     const [amount, setAmount] = useState('');
@@ -385,6 +468,61 @@ const UPISimulator = ({ user, onLogin }) => {
                         </AnimatePresence>
                     </motion.div>
                 </div>
+
+                {/* Quick Demo Scenarios */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-10"
+                >
+                    <h2 className="text-2xl font-bold text-white mb-2 text-center">⚡ Quick Demo Scenarios</h2>
+                    <p className="text-gray-400 text-center mb-6">
+                        Click any scenario to auto-fill and test different fraud patterns
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {DEMO_SCENARIOS.map((scenario, index) => {
+                            const riskColors = {
+                                LOW: 'border-green-500/30 hover:border-green-500/60',
+                                MEDIUM: 'border-yellow-500/30 hover:border-yellow-500/60',
+                                HIGH: 'border-red-500/30 hover:border-red-500/60'
+                            };
+                            const riskBadge = {
+                                LOW: 'bg-green-500/20 text-green-400',
+                                MEDIUM: 'bg-yellow-500/20 text-yellow-400',
+                                HIGH: 'bg-red-500/20 text-red-400'
+                            };
+                            return (
+                                <motion.button
+                                    key={index}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => {
+                                        setRecipientUpi(scenario.recipient);
+                                        setAmount(String(scenario.amount));
+                                        setResult(null);
+                                        setError(null);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className={`glass rounded-xl p-4 text-left border ${riskColors[scenario.expected_risk]} transition-all cursor-pointer`}
+                                >
+                                    <div className="flex items-start justify-between mb-2">
+                                        <span className="text-2xl">{scenario.icon}</span>
+                                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${riskBadge[scenario.expected_risk]}`}>
+                                            {scenario.expected_risk}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-white font-semibold text-sm mb-1">{scenario.scenario}</h3>
+                                    <p className="text-gray-500 text-xs mb-2">{scenario.description}</p>
+                                    <div className="flex items-center justify-between text-xs">
+                                        <span className="text-purple-400 font-mono">{scenario.recipient}</span>
+                                        <span className="text-gray-400">₹{scenario.amount.toLocaleString()}</span>
+                                    </div>
+                                </motion.button>
+                            );
+                        })}
+                    </div>
+                </motion.div>
             </div>
         </div>
     );
