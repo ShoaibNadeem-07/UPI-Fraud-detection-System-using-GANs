@@ -101,9 +101,9 @@ const Dashboard = ({ user }) => {
 
     const getRiskColor = (risk) => {
         switch (risk) {
-            case 'HIGH': return 'text-red-400 bg-red-500/20';
-            case 'MEDIUM': return 'text-yellow-400 bg-yellow-500/20';
-            default: return 'text-green-400 bg-green-500/20';
+            case 'HIGH': return 'text-red-700 bg-red-100 border border-red-200';
+            case 'MEDIUM': return 'text-amber-700 bg-amber-100 border border-amber-200';
+            default: return 'text-green-700 bg-green-100 border border-green-200';
         }
     };
 
@@ -125,14 +125,14 @@ const Dashboard = ({ user }) => {
                     animate={{ opacity: 1, y: 0 }}
                 >
                     <div>
-                        <h1 className="text-3xl font-bold gradient-text">Real-Time Dashboard</h1>
-                        <p className="text-gray-400 mt-1">Live fraud monitoring & analytics</p>
+                        <h1 className="text-3xl font-bold text-slate-800 brand-font">Real-Time Dashboard</h1>
+                        <p className="text-slate-500 mt-1 font-medium">Live fraud monitoring & analytics</p>
                     </div>
                     <button
                         onClick={() => setIsLive(!isLive)}
-                        className={`px-4 py-2 rounded-lg flex items-center gap-2 ${isLive ? 'bg-green-500/20 text-green-400' : 'bg-gray-700 text-gray-400'}`}
+                        className={`px-4 py-2 rounded-lg flex items-center gap-2 font-medium shadow-sm transition-colors ${isLive ? 'bg-green-100 text-green-700 border border-green-200 hover:bg-green-200' : 'bg-slate-200 text-slate-600 border border-slate-300 hover:bg-slate-300'}`}
                     >
-                        <span className={`w-2 h-2 rounded-full ${isLive ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`}></span>
+                        <span className={`w-2 h-2 rounded-full ${isLive ? 'bg-green-500 animate-pulse' : 'bg-slate-500'}`}></span>
                         {isLive ? 'LIVE' : 'PAUSED'}
                     </button>
                 </motion.div>
@@ -144,45 +144,45 @@ const Dashboard = ({ user }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <div className="glass-card p-6 rounded-xl">
-                        <div className="text-gray-400 text-sm mb-1">Total Transactions</div>
-                        <div className="text-3xl font-bold text-white">{stats.totalTransactions.toLocaleString()}</div>
-                        <div className="text-green-400 text-sm mt-2">↑ 12% from yesterday</div>
+                    <div className="glass-card p-6 rounded-xl border border-slate-200">
+                        <div className="text-slate-500 font-medium text-sm mb-1">Total Transactions</div>
+                        <div className="text-3xl font-bold text-slate-800 brand-font">{stats.totalTransactions.toLocaleString()}</div>
+                        <div className="text-emerald-600 font-medium text-sm mt-2">↑ 12% from yesterday</div>
                     </div>
-                    <div className="glass-card p-6 rounded-xl">
-                        <div className="text-gray-400 text-sm mb-1">Fraud Blocked</div>
-                        <div className="text-3xl font-bold text-red-400">{stats.fraudBlocked}</div>
-                        <div className="text-red-400 text-sm mt-2">🛡️ Protected today</div>
+                    <div className="glass-card p-6 rounded-xl border border-slate-200">
+                        <div className="text-slate-500 font-medium text-sm mb-1">Fraud Blocked</div>
+                        <div className="text-3xl font-bold text-red-600 brand-font">{stats.fraudBlocked}</div>
+                        <div className="text-red-500 font-medium text-sm mt-2">🛡️ Protected today</div>
                     </div>
-                    <div className="glass-card p-6 rounded-xl">
-                        <div className="text-gray-400 text-sm mb-1">Amount Protected</div>
-                        <div className="text-3xl font-bold text-emerald-400">₹{(stats.amountProtected / 1000).toFixed(1)}K</div>
-                        <div className="text-emerald-400 text-sm mt-2">💰 Saved from fraud</div>
+                    <div className="glass-card p-6 rounded-xl border border-slate-200">
+                        <div className="text-slate-500 font-medium text-sm mb-1">Amount Protected</div>
+                        <div className="text-3xl font-bold text-emerald-600 brand-font">₹{(stats.amountProtected / 1000).toFixed(1)}K</div>
+                        <div className="text-emerald-600 font-medium text-sm mt-2">💰 Saved from fraud</div>
                     </div>
-                    <div className="glass-card p-6 rounded-xl">
-                        <div className="text-gray-400 text-sm mb-1">Avg Risk Score</div>
-                        <div className="text-3xl font-bold text-blue-400">{(stats.avgRiskScore * 100).toFixed(1)}%</div>
-                        <div className="text-blue-400 text-sm mt-2">📊 Network health</div>
+                    <div className="glass-card p-6 rounded-xl border border-slate-200">
+                        <div className="text-slate-500 font-medium text-sm mb-1">Avg Risk Score</div>
+                        <div className="text-3xl font-bold text-blue-600 brand-font">{(stats.avgRiskScore * 100).toFixed(1)}%</div>
+                        <div className="text-blue-600 font-medium text-sm mt-2">📊 Network health</div>
                     </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Live Transaction Feed */}
                     <motion.div
-                        className="lg:col-span-2 glass-card p-6 rounded-xl"
+                        className="lg:col-span-2 glass-card p-6 rounded-xl border border-slate-200"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-4 flex items-center gap-2 brand-font">
+                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                             Live Transaction Stream
                         </h2>
-                        <div className="space-y-3 max-h-96 overflow-y-auto">
+                        <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
                             {recentTransactions.map((tx, index) => (
                                 <motion.div
                                     key={tx.id}
-                                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                                    className="flex items-center justify-between p-4 bg-white rounded-lg hover:shadow-md transition-shadow border border-slate-100"
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.05 }}
@@ -190,13 +190,13 @@ const Dashboard = ({ user }) => {
                                     <div className="flex items-center gap-3">
                                         <span className="text-2xl">{getStatusIcon(tx.status)}</span>
                                         <div>
-                                            <div className="text-white text-sm">{tx.sender} → {tx.recipient}</div>
-                                            <div className="text-gray-500 text-xs">{tx.time}</div>
+                                            <div className="text-slate-800 font-medium text-sm">{tx.sender} → {tx.recipient}</div>
+                                            <div className="text-slate-500 text-xs">{tx.time}</div>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <div className="text-white font-medium">₹{tx.amount.toLocaleString()}</div>
-                                        <span className={`px-2 py-1 rounded text-xs font-medium ${getRiskColor(tx.risk)}`}>
+                                        <div className="text-slate-800 font-bold">₹{tx.amount.toLocaleString()}</div>
+                                        <span className={`px-2 py-1 rounded text-xs font-bold ${getRiskColor(tx.risk)}`}>
                                             {tx.risk}
                                         </span>
                                     </div>
@@ -207,12 +207,12 @@ const Dashboard = ({ user }) => {
 
                     {/* Risk Distribution Pie Chart */}
                     <motion.div
-                        className="glass-card p-6 rounded-xl"
+                        className="glass-card p-6 rounded-xl border border-slate-200"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 }}
                     >
-                        <h2 className="text-xl font-semibold text-white mb-4">Risk Distribution</h2>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-4 brand-font">Risk Distribution</h2>
                         <ResponsiveContainer width="100%" height={200}>
                             <PieChart>
                                 <Pie
@@ -228,14 +228,14 @@ const Dashboard = ({ user }) => {
                                         <Cell key={`cell-${index}`} fill={entry.color} />
                                     ))}
                                 </Pie>
-                                <Tooltip />
+                                <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px' }} itemStyle={{ color: '#0f172a' }} />
                             </PieChart>
                         </ResponsiveContainer>
                         <div className="flex justify-center gap-4 mt-4">
                             {riskDistribution.map((item, index) => (
                                 <div key={index} className="flex items-center gap-2">
                                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
-                                    <span className="text-gray-400 text-sm">{item.name}</span>
+                                    <span className="text-slate-600 font-medium text-sm">{item.name}</span>
                                 </div>
                             ))}
                         </div>
@@ -244,20 +244,21 @@ const Dashboard = ({ user }) => {
 
                 {/* Hourly Activity Chart */}
                 <motion.div
-                    className="glass-card p-6 rounded-xl mt-6"
+                    className="glass-card p-6 rounded-xl mt-6 border border-slate-200"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <h2 className="text-xl font-semibold text-white mb-4">24-Hour Activity</h2>
+                    <h2 className="text-xl font-semibold text-slate-800 mb-4 brand-font">24-Hour Activity</h2>
                     <ResponsiveContainer width="100%" height={250}>
                         <BarChart data={hourlyData}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                            <XAxis dataKey="hour" stroke="#9ca3af" fontSize={10} />
-                            <YAxis stroke="#9ca3af" />
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                            <XAxis dataKey="hour" stroke="#64748b" fontSize={10} />
+                            <YAxis stroke="#64748b" />
                             <Tooltip
-                                contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
-                                labelStyle={{ color: '#fff' }}
+                                contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                labelStyle={{ color: '#0f172a', fontWeight: 'bold' }}
+                                itemStyle={{ color: '#0f172a' }}
                             />
                             <Bar dataKey="transactions" fill="#3b82f6" name="Transactions" radius={[4, 4, 0, 0]} />
                             <Bar dataKey="fraudAttempts" fill="#ef4444" name="Fraud Attempts" radius={[4, 4, 0, 0]} />

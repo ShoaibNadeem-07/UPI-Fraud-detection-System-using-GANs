@@ -81,17 +81,17 @@ const TransactionHistory = ({ user }) => {
 
     const getRiskColor = (risk) => {
         switch (risk) {
-            case 'HIGH': return 'text-red-400 bg-red-500/20 border-red-500/30';
-            case 'MEDIUM': return 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30';
-            default: return 'text-green-400 bg-green-500/20 border-green-500/30';
+            case 'HIGH': return 'text-red-700 bg-red-100 border border-red-200';
+            case 'MEDIUM': return 'text-amber-700 bg-amber-100 border border-amber-200';
+            default: return 'text-green-700 bg-green-100 border border-green-200';
         }
     };
 
     const getStatusBadge = (status) => {
         switch (status) {
-            case 'BLOCKED': return { icon: '🚫', text: 'Blocked', class: 'bg-red-500/20 text-red-400' };
-            case 'VERIFY': return { icon: '⚠️', text: 'Verified', class: 'bg-yellow-500/20 text-yellow-400' };
-            default: return { icon: '✅', text: 'Allowed', class: 'bg-green-500/20 text-green-400' };
+            case 'BLOCKED': return { icon: '🚫', text: 'Blocked', class: 'bg-red-50 text-red-600 border border-red-100' };
+            case 'VERIFY': return { icon: '⚠️', text: 'Verified', class: 'bg-amber-50 text-amber-600 border border-amber-100' };
+            default: return { icon: '✅', text: 'Allowed', class: 'bg-green-50 text-green-600 border border-green-100' };
         }
     };
 
@@ -110,8 +110,8 @@ const TransactionHistory = ({ user }) => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h2 className="text-2xl font-bold text-white mb-4">Please Sign In</h2>
-                    <p className="text-gray-400 mb-6">View your transaction history after signing in</p>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4 brand-font">Please Sign In</h2>
+                    <p className="text-slate-600 mb-6 font-medium">View your transaction history after signing in</p>
                     <button onClick={() => navigate('/')} className="btn-primary px-6 py-3 rounded-lg">
                         Go to Home
                     </button>
@@ -129,8 +129,8 @@ const TransactionHistory = ({ user }) => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
-                    <h1 className="text-3xl font-bold gradient-text">Transaction History</h1>
-                    <p className="text-gray-400 mt-1">Your past transactions with fraud detection results</p>
+                    <h1 className="text-3xl font-bold text-slate-800 brand-font">Transaction History</h1>
+                    <p className="text-slate-500 mt-1 font-medium">Your past transactions with fraud detection results</p>
                 </motion.div>
 
                 {/* Stats Cards */}
@@ -140,21 +140,21 @@ const TransactionHistory = ({ user }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <div className="glass-card p-4 rounded-xl text-center">
-                        <div className="text-2xl font-bold text-white">{stats.total}</div>
-                        <div className="text-gray-400 text-sm">Total</div>
+                    <div className="glass-card p-4 rounded-xl text-center border border-slate-200">
+                        <div className="text-2xl font-bold text-slate-800 brand-font">{stats.total}</div>
+                        <div className="text-slate-500 font-medium text-sm">Total</div>
                     </div>
-                    <div className="glass-card p-4 rounded-xl text-center">
-                        <div className="text-2xl font-bold text-green-400">{stats.allowed}</div>
-                        <div className="text-gray-400 text-sm">Allowed</div>
+                    <div className="glass-card p-4 rounded-xl text-center border border-slate-200">
+                        <div className="text-2xl font-bold text-green-600 brand-font">{stats.allowed}</div>
+                        <div className="text-slate-500 font-medium text-sm">Allowed</div>
                     </div>
-                    <div className="glass-card p-4 rounded-xl text-center">
-                        <div className="text-2xl font-bold text-red-400">{stats.blocked}</div>
-                        <div className="text-gray-400 text-sm">Blocked</div>
+                    <div className="glass-card p-4 rounded-xl text-center border border-slate-200">
+                        <div className="text-2xl font-bold text-red-600 brand-font">{stats.blocked}</div>
+                        <div className="text-slate-500 font-medium text-sm">Blocked</div>
                     </div>
-                    <div className="glass-card p-4 rounded-xl text-center">
-                        <div className="text-2xl font-bold text-emerald-400">₹{(stats.totalAmount / 1000).toFixed(1)}K</div>
-                        <div className="text-gray-400 text-sm">Spent</div>
+                    <div className="glass-card p-4 rounded-xl text-center border border-slate-200">
+                        <div className="text-2xl font-bold text-emerald-600 brand-font">₹{(stats.totalAmount / 1000).toFixed(1)}K</div>
+                        <div className="text-slate-500 font-medium text-sm">Spent</div>
                     </div>
                 </motion.div>
 
@@ -166,14 +166,14 @@ const TransactionHistory = ({ user }) => {
                     transition={{ delay: 0.2 }}
                 >
                     <div className="flex gap-2">
-                        <span className="text-gray-400 self-center">Filter:</span>
+                        <span className="text-slate-500 font-medium self-center">Filter:</span>
                         {['all', 'allowed', 'blocked', 'high'].map(f => (
                             <button
                                 key={f}
                                 onClick={() => setFilter(f)}
-                                className={`px-3 py-1 rounded-lg text-sm capitalize transition-colors ${filter === f
-                                    ? 'bg-purple-500/30 text-purple-300 border border-purple-500/50'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                                className={`px-3 py-1 rounded-lg text-sm capitalize font-medium transition-colors ${filter === f
+                                    ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                                    : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'
                                     }`}
                             >
                                 {f === 'high' ? 'High Risk' : f}
@@ -181,7 +181,7 @@ const TransactionHistory = ({ user }) => {
                         ))}
                     </div>
                     <div className="flex gap-2 ml-auto">
-                        <span className="text-gray-400 self-center">Sort:</span>
+                        <span className="text-slate-500 font-medium self-center">Sort:</span>
                         {[
                             { key: 'date', label: 'Date' },
                             { key: 'amount', label: 'Amount' },
@@ -190,9 +190,9 @@ const TransactionHistory = ({ user }) => {
                             <button
                                 key={s.key}
                                 onClick={() => setSortBy(s.key)}
-                                className={`px-3 py-1 rounded-lg text-sm transition-colors ${sortBy === s.key
-                                    ? 'bg-blue-500/30 text-blue-300 border border-blue-500/50'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                                className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${sortBy === s.key
+                                    ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                                    : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'
                                     }`}
                             >
                                 {s.label}
@@ -219,7 +219,7 @@ const TransactionHistory = ({ user }) => {
                             return (
                                 <motion.div
                                     key={tx.id}
-                                    className={`glass-card p-5 rounded-xl border ${getRiskColor(tx.riskLevel).split(' ')[2]}`}
+                                    className={`glass-card p-5 rounded-xl border border-slate-200`}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.05 }}
@@ -229,22 +229,22 @@ const TransactionHistory = ({ user }) => {
                                         <div className="flex items-center gap-4">
                                             <div className="text-3xl">{statusBadge.icon}</div>
                                             <div>
-                                                <div className="text-white font-medium">{tx.recipient}</div>
-                                                <div className="text-gray-500 text-sm">{formatDate(tx.timestamp)}</div>
+                                                <div className="text-slate-800 font-bold">{tx.recipient}</div>
+                                                <div className="text-slate-500 text-sm font-medium">{formatDate(tx.timestamp)}</div>
                                             </div>
                                         </div>
 
                                         {/* Center: Amount & Risk */}
                                         <div className="flex items-center gap-6">
                                             <div className="text-right">
-                                                <div className="text-xl font-bold text-white">₹{tx.amount.toLocaleString()}</div>
-                                                <div className="text-gray-500 text-sm">Amount</div>
+                                                <div className="text-xl font-bold text-slate-800">₹{tx.amount.toLocaleString()}</div>
+                                                <div className="text-slate-500 text-sm font-medium">Amount</div>
                                             </div>
                                             <div className="text-right">
-                                                <div className={`text-xl font-bold ${tx.riskLevel === 'HIGH' ? 'text-red-400' : tx.riskLevel === 'MEDIUM' ? 'text-yellow-400' : 'text-green-400'}`}>
+                                                <div className={`text-xl font-bold ${tx.riskLevel === 'HIGH' ? 'text-red-600' : tx.riskLevel === 'MEDIUM' ? 'text-amber-600' : 'text-green-600'}`}>
                                                     {(tx.fraudScore * 100).toFixed(0)}%
                                                 </div>
-                                                <div className="text-gray-500 text-sm">Fraud Score</div>
+                                                <div className="text-slate-500 text-sm font-medium">Fraud Score</div>
                                             </div>
                                         </div>
 
@@ -260,9 +260,9 @@ const TransactionHistory = ({ user }) => {
                                     </div>
 
                                     {/* Explanation */}
-                                    <div className="mt-3 pt-3 border-t border-white/10">
-                                        <p className="text-gray-400 text-sm">
-                                            <span className="text-gray-500">AI Explanation:</span> {tx.explanation}
+                                    <div className="mt-4 pt-3 border-t border-slate-100">
+                                        <p className="text-slate-600 text-sm leading-relaxed">
+                                            <span className="text-slate-800 font-bold">AI Explanation:</span> {tx.explanation}
                                         </p>
                                     </div>
                                 </motion.div>

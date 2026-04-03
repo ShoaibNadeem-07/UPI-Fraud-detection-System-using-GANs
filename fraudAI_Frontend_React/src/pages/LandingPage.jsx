@@ -51,8 +51,8 @@ const LandingPage = ({ user }) => {
             <section className="relative py-20 px-4 overflow-hidden">
                 {/* Background Effects */}
                 <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl"></div>
+                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl"></div>
                 </div>
 
                 <div className="max-w-7xl mx-auto relative z-10">
@@ -62,13 +62,13 @@ const LandingPage = ({ user }) => {
                         transition={{ duration: 0.8 }}
                         className="text-center"
                     >
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                            <span className="text-white">Real-Time</span>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 brand-font">
+                            <span className="text-slate-900">Real-Time</span>
                             <br />
                             <span className="gradient-text">UPI Fraud Detection</span>
                         </h1>
 
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
                             Powered by XGBoost, NGBoost & SHAP explainability.
                             Detect fraudulent UPI transactions before money is transferred.
                         </p>
@@ -76,14 +76,14 @@ const LandingPage = ({ user }) => {
                         <div className="flex flex-wrap justify-center gap-4">
                             <Link
                                 to="/simulator"
-                                className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-semibold hover:opacity-90 transition-opacity text-lg"
+                                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white rounded-xl font-semibold hover:opacity-90 transition-opacity text-lg shadow-lg shadow-blue-500/20"
                             >
                                 Try UPI Simulator
                             </Link>
 
                             <Link
                                 to="/analyzer"
-                                className="px-8 py-4 glass rounded-xl text-white font-semibold hover:bg-white/10 transition-all text-lg"
+                                className="px-8 py-4 glass rounded-xl text-slate-700 font-semibold hover:bg-white/90 hover:shadow-md transition-all text-lg border border-slate-200"
                             >
                                 Analyze Dataset
                             </Link>
@@ -99,8 +99,8 @@ const LandingPage = ({ user }) => {
                     >
                         {stats.map((stat, index) => (
                             <div key={index} className="glass rounded-2xl p-6 text-center card-hover">
-                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">{stat.value}</div>
-                                <div className="text-gray-400">{stat.label}</div>
+                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2 brand-font">{stat.value}</div>
+                                <div className="text-slate-500 font-medium">{stat.label}</div>
                             </div>
                         ))}
                     </motion.div>
@@ -117,8 +117,8 @@ const LandingPage = ({ user }) => {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl font-bold text-white mb-4">Two Powerful Modes</h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">
+                        <h2 className="text-4xl font-bold text-slate-900 mb-4 brand-font">Two Powerful Modes</h2>
+                        <p className="text-slate-600 max-w-2xl mx-auto">
                             Research validation with dataset analysis or real-world UPI simulation.
                             Both powered by the same ML models with full explainability.
                         </p>
@@ -137,11 +137,11 @@ const LandingPage = ({ user }) => {
                                     to={feature.link}
                                     className="block glass rounded-2xl p-8 card-hover h-full"
                                 >
-                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-6`}>
+                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-6 shadow-md`}>
                                         {feature.icon}
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
-                                    <p className="text-gray-400">{feature.description}</p>
+                                    <h3 className="text-2xl font-bold text-slate-800 mb-3 brand-font">{feature.title}</h3>
+                                    <p className="text-slate-600">{feature.description}</p>
                                 </Link>
                             </motion.div>
                         ))}
@@ -157,36 +157,36 @@ const LandingPage = ({ user }) => {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6 }}
                         viewport={{ once: true }}
-                        className="glass rounded-3xl p-10"
+                        className="glass-card rounded-3xl p-10"
                     >
-                        <h2 className="text-3xl font-bold text-white text-center mb-10">Risk Assessment Levels</h2>
+                        <h2 className="text-3xl font-bold text-slate-900 text-center mb-10 brand-font">Risk Assessment Levels</h2>
                         <div className="grid md:grid-cols-3 gap-8">
-                            <div className="text-center">
+                            <div className="text-center p-6 rounded-2xl hover:bg-slate-50 transition-colors">
                                 <div className="w-20 h-20 risk-low rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-10 h-10 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-green-400 mb-2">LOW RISK</h3>
-                                <p className="text-gray-400">Score &lt; 0.60 — Transaction ALLOWED</p>
+                                <h3 className="text-xl font-bold text-green-600 mb-2 brand-font">LOW RISK</h3>
+                                <p className="text-slate-500 text-sm font-medium">Score &lt; 0.60 — ALLOWED</p>
                             </div>
-                            <div className="text-center">
+                            <div className="text-center p-6 rounded-2xl hover:bg-slate-50 transition-colors">
                                 <div className="w-20 h-20 risk-medium rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-10 h-10 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-yellow-400 mb-2">MEDIUM RISK</h3>
-                                <p className="text-gray-400">Score ≥ 0.60 — Requires VERIFICATION</p>
+                                <h3 className="text-xl font-bold text-amber-600 mb-2 brand-font">MEDIUM RISK</h3>
+                                <p className="text-slate-500 text-sm font-medium">Score ≥ 0.60 — VERIFICATION</p>
                             </div>
-                            <div className="text-center">
+                            <div className="text-center p-6 rounded-2xl hover:bg-slate-50 transition-colors">
                                 <div className="w-20 h-20 risk-high rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow text-red-500">
-                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-10 h-10 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-red-400 mb-2">HIGH RISK</h3>
-                                <p className="text-gray-400">Score ≥ 0.85 — Transaction BLOCKED</p>
+                                <h3 className="text-xl font-bold text-red-600 mb-2 brand-font">HIGH RISK</h3>
+                                <p className="text-slate-500 text-sm font-medium">Score ≥ 0.85 — BLOCKED</p>
                             </div>
                         </div>
                     </motion.div>

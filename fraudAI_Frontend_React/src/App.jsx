@@ -47,46 +47,46 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-800 font-sans">
         {/* Navigation */}
-        <nav className="bg-black/30 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+        <nav className="bg-white/70 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <Link to="/" className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-emerald-400 rounded-xl flex items-center justify-center shadow-sm">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent brand-font">
                   SafePayAI
                 </span>
               </Link>
 
               <div className="hidden md:flex items-center space-x-8">
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
-                <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">Dashboard</Link>
-                <Link to="/analyzer" className="text-gray-300 hover:text-white transition-colors">Analyzer</Link>
-                <Link to="/simulator" className="text-gray-300 hover:text-white transition-colors">Simulator</Link>
-                <Link to="/history" className="text-gray-300 hover:text-white transition-colors">History</Link>
+                <Link to="/" className="text-slate-600 font-medium hover:text-blue-600 transition-colors">Home</Link>
+                <Link to="/dashboard" className="text-slate-600 font-medium hover:text-blue-600 transition-colors">Dashboard</Link>
+                <Link to="/analyzer" className="text-slate-600 font-medium hover:text-blue-600 transition-colors">Analyzer</Link>
+                <Link to="/simulator" className="text-slate-600 font-medium hover:text-blue-600 transition-colors">Simulator</Link>
+                <Link to="/history" className="text-slate-600 font-medium hover:text-blue-600 transition-colors">History</Link>
               </div>
 
               <div className="flex items-center space-x-4">
                 {user ? (
                   <div className="flex items-center space-x-3">
-                    <img src={user.photoURL} alt="Profile" className="w-8 h-8 rounded-full border-2 border-purple-500/50" />
-                    <span className="text-gray-300 text-sm hidden lg:block">{user.displayName}</span>
+                    <img src={user.photoURL} alt="Profile" className="w-8 h-8 rounded-full border-2 border-emerald-400/50" />
+                    <span className="text-slate-700 font-medium text-sm hidden lg:block">{user.displayName}</span>
                     <button
                       onClick={handleLogout}
-                      className="px-3 py-1.5 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-colors text-sm"
+                      className="px-3 py-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors text-sm font-medium"
                     >
                       Logout
                     </button>
@@ -94,7 +94,7 @@ function App() {
                 ) : (
                   <button
                     onClick={handleLogin}
-                    className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity flex items-center space-x-2 text-sm"
+                    className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity flex items-center space-x-2 text-sm shadow-md shadow-blue-500/20"
                   >
                     <svg className="w-4 h-4" viewBox="0 0 24 24">
                       <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -122,8 +122,8 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-black/30 border-t border-white/10 py-6 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+        <footer className="bg-white/50 backdrop-blur-sm border-t border-slate-200 py-6 mt-auto">
+          <div className="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm font-medium">
             <p>SafePayAI — Powered by XGBoost, NGBoost & SHAP</p>
           </div>
         </footer>

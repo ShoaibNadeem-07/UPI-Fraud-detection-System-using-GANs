@@ -1,14 +1,14 @@
 """
 Visualize GAN Comparison Report
 Generates bar charts comparing No GAN vs Standard GAN vs CGAN
-for both XGBoost and NGBoost models.
+for both XGBoost and NGBoost models separately.
 """
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import numpy as np
 import os
 
-OUTPUT_DIR = r'c:\Users\shoai\Desktop\alternate 4\comparison_charts'
+OUTPUT_DIR = r'comparison_charts'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # ===== DATA FROM REPORTS =====
@@ -88,45 +88,43 @@ def plot_grouped_bar(data, title, filename):
     print(f"Saved: {path}")
 
 
-def plot_fraud_focus(xgb, ngb, filename):
+def plot_fraud_focus_single(data, model_name, filename):
     """Fraud-specific metrics comparison (the most important ones)."""
     fraud_metrics = ['Recall\n(Fraud)', 'Precision\n(Fraud)', 'F1\n(Fraud)']
     labels = ['Fraud Recall', 'Fraud Precision', 'Fraud F1-Score']
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig, ax = plt.subplots(figsize=(8, 5))
     fig.patch.set_facecolor('#1a1a2e')
-    fig.suptitle('Fraud Detection Performance: The Metrics That Matter',
-                 fontsize=16, color='white', fontweight='bold', y=1.02)
+    ax.set_facecolor('#1a1a2e')
+    
+    fig.suptitle(f'{model_name} Fraud Detection Performance',
+                 fontsize=14, color='white', fontweight='bold', y=1.02)
 
-    for ax, data, model_name in zip(axes, [xgb, ngb], ['XGBoost', 'NGBoost']):
-        ax.set_facecolor('#1a1a2e')
-        x = np.arange(len(labels))
-        width = 0.25
+    x = np.arange(len(labels))
+    width = 0.25
 
-        for i, method in enumerate(METHODS):
-            values = [data[method][m] for m in fraud_metrics]
-            bars = ax.bar(x + i * width, values, width, label=method,
-                          color=COLORS[method], edgecolor='white', linewidth=0.5,
-                          alpha=0.9, zorder=3)
-            for bar, val in zip(bars, values):
-                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
-                        f'{val:.1f}%', ha='center', va='bottom', fontsize=8,
-                        fontweight='bold', color='white')
+    for i, method in enumerate(METHODS):
+        values = [data[method][m] for m in fraud_metrics]
+        bars = ax.bar(x + i * width, values, width, label=method,
+                      color=COLORS[method], edgecolor='white', linewidth=0.5,
+                      alpha=0.9, zorder=3)
+        for bar, val in zip(bars, values):
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
+                    f'{val:.1f}%', ha='center', va='bottom', fontsize=8,
+                    fontweight='bold', color='white')
 
-        ax.set_title(model_name, fontsize=14, color='white', fontweight='bold')
-        ax.set_xticks(x + width)
-        ax.set_xticklabels(labels, fontsize=10, color='#cccccc')
-        ax.set_ylim(0, 110)
-        ax.set_ylabel('Score (%)', fontsize=10, color='white')
-        ax.tick_params(colors='#cccccc')
-        ax.grid(axis='y', alpha=0.15, color='white', zorder=0)
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_color('#444')
-        ax.spines['bottom'].set_color('#444')
-        if ax == axes[1]:
-            ax.legend(fontsize=10, facecolor='#16213e', edgecolor='#444',
-                      labelcolor='white')
+    ax.set_xticks(x + width)
+    ax.set_xticklabels(labels, fontsize=10, color='#cccccc')
+    ax.set_ylim(0, 110)
+    ax.set_ylabel('Score (%)', fontsize=10, color='white')
+    ax.tick_params(colors='#cccccc')
+    ax.grid(axis='y', alpha=0.15, color='white', zorder=0)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_color('#444')
+    ax.spines['bottom'].set_color('#444')
+    
+    ax.legend(fontsize=10, facecolor='#16213e', edgecolor='#444', labelcolor='white')
 
     plt.tight_layout()
     path = os.path.join(OUTPUT_DIR, filename)
@@ -135,34 +133,31 @@ def plot_fraud_focus(xgb, ngb, filename):
     print(f"Saved: {path}")
 
 
-def plot_accuracy_comparison(xgb, ngb, filename):
-    """Simple accuracy comparison across both models."""
-    fig, ax = plt.subplots(figsize=(8, 5))
+def plot_accuracy_comparison_single(data, model_name, filename):
+    """Simple accuracy comparison for a single model."""
+    fig, ax = plt.subplots(figsize=(6, 5))
     fig.patch.set_facecolor('#1a1a2e')
     ax.set_facecolor('#1a1a2e')
 
-    models = ['XGBoost', 'NGBoost']
-    x = np.arange(len(models))
-    width = 0.22
+    x = np.arange(len(METHODS))
+    values = [data[method]['Accuracy'] for method in METHODS]
+    colors = [COLORS[m] for m in METHODS]
 
-    for i, method in enumerate(METHODS):
-        values = [xgb[method]['Accuracy'], ngb[method]['Accuracy']]
-        bars = ax.bar(x + i * width, values, width, label=method,
-                      color=COLORS[method], edgecolor='white', linewidth=0.5,
-                      alpha=0.9, zorder=3)
-        for bar, val in zip(bars, values):
-            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.8,
-                    f'{val:.1f}%', ha='center', va='bottom', fontsize=10,
-                    fontweight='bold', color='white')
+    bars = ax.bar(x, values, color=colors, edgecolor='white', linewidth=0.5, alpha=0.9, zorder=3)
+    
+    for bar, val in zip(bars, values):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.8,
+                f'{val:.1f}%', ha='center', va='bottom', fontsize=10,
+                fontweight='bold', color='white')
 
-    ax.set_title('Overall Accuracy Comparison', fontsize=16, color='white',
+    ax.set_title(f'{model_name} Overall Accuracy', fontsize=14, color='white',
                  fontweight='bold', pad=15)
-    ax.set_xticks(x + width)
-    ax.set_xticklabels(models, fontsize=12, color='#cccccc')
+    ax.set_xticks(x)
+    ax.set_xticklabels(METHODS, fontsize=10, color='#cccccc')
     ax.set_ylabel('Accuracy (%)', fontsize=12, color='white', fontweight='bold')
     ax.set_ylim(0, 105)
     ax.tick_params(colors='#cccccc')
-    ax.legend(fontsize=11, facecolor='#16213e', edgecolor='#444', labelcolor='white')
+    
     ax.grid(axis='y', alpha=0.15, color='white', zorder=0)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -176,58 +171,55 @@ def plot_accuracy_comparison(xgb, ngb, filename):
     print(f"Saved: {path}")
 
 
-def plot_confusion_matrices(xgb_cms, ngb_cms, filename):
-    """Plot 2x3 grid of confusion matrix heatmaps."""
+def plot_confusion_matrices_single(cms, model_name, filename):
+    """Plot 1x3 grid of confusion matrix heatmaps for a single model."""
     labels = ['Legitimate', 'Fraud']
-    model_names = ['XGBoost', 'NGBoost']
-    all_cms = [xgb_cms, ngb_cms]
 
-    fig, axes = plt.subplots(2, 3, figsize=(16, 10))
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
     fig.patch.set_facecolor('#1a1a2e')
-    fig.suptitle('Confusion Matrices Comparison', fontsize=20, color='white',
+    fig.suptitle(f'{model_name} Confusion Matrices Comparison', fontsize=18, color='white',
                  fontweight='bold', y=0.98)
 
-    for row, (model_name, cms) in enumerate(zip(model_names, all_cms)):
-        for col, method in enumerate(METHODS):
-            ax = axes[row, col]
-            cm = cms[method]
-            
-            # Create a custom colormap based on method color
-            base_color = COLORS[method]
-            cmap = mcolors.LinearSegmentedColormap.from_list(
-                'custom', ['#1a1a2e', base_color], N=256)
+    for col, method in enumerate(METHODS):
+        ax = axes[col]
+        cm = cms[method]
+        
+        # Create a custom colormap based on method color
+        base_color = COLORS[method]
+        cmap = mcolors.LinearSegmentedColormap.from_list(
+            'custom', ['#1a1a2e', base_color], N=256)
 
-            # Plot heatmap
-            im = ax.imshow(cm, interpolation='nearest', cmap=cmap, aspect='auto')
+        # Plot heatmap
+        im = ax.imshow(cm, interpolation='nearest', cmap=cmap, aspect='auto')
 
-            # Add text annotations
-            max_val = cm.max()
-            for i in range(2):
-                for j in range(2):
-                    val = cm[i, j]
-                    text_color = 'white' if val > max_val * 0.5 else '#cccccc'
-                    ax.text(j, i, f'{val:,}', ha='center', va='center',
-                            fontsize=16, fontweight='bold', color=text_color)
+        # Add text annotations
+        max_val = cm.max()
+        for i in range(2):
+            for j in range(2):
+                val = cm[i, j]
+                text_color = 'white' if val > max_val * 0.5 else '#cccccc'
+                ax.text(j, i, f'{val:,}', ha='center', va='center',
+                        fontsize=16, fontweight='bold', color=text_color)
 
-            # Title: row label + method
-            title = f'{model_name} — {method}'
-            ax.set_title(title, fontsize=12, color=COLORS[method],
-                         fontweight='bold', pad=8)
+        # Title: method
+        title = f'{method}'
+        ax.set_title(title, fontsize=14, color=COLORS[method],
+                     fontweight='bold', pad=8)
 
-            ax.set_xticks([0, 1])
-            ax.set_yticks([0, 1])
-            ax.set_xticklabels(labels, fontsize=10, color='#cccccc')
-            ax.set_yticklabels(labels, fontsize=10, color='#cccccc')
-            ax.set_xlabel('Predicted', fontsize=10, color='#aaaaaa')
-            ax.set_ylabel('Actual', fontsize=10, color='#aaaaaa')
-            ax.tick_params(colors='#cccccc', length=0)
+        ax.set_xticks([0, 1])
+        ax.set_yticks([0, 1])
+        ax.set_xticklabels(labels, fontsize=10, color='#cccccc')
+        ax.set_yticklabels(labels, fontsize=10, color='#cccccc')
+        ax.set_xlabel('Predicted', fontsize=10, color='#aaaaaa')
+        ax.set_ylabel('Actual', fontsize=10, color='#aaaaaa')
+        ax.tick_params(colors='#cccccc', length=0)
 
-            # Border color matching the method
-            for spine in ax.spines.values():
-                spine.set_color(COLORS[method])
-                spine.set_linewidth(2)
+        # Border color matching the method
+        for spine in ax.spines.values():
+            spine.set_color(COLORS[method])
+            spine.set_linewidth(2)
 
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout(rect=[0, 0, 1, 0.90])
     path = os.path.join(OUTPUT_DIR, filename)
     plt.savefig(path, dpi=200, bbox_inches='tight', facecolor=fig.get_facecolor())
     plt.close()
@@ -235,12 +227,19 @@ def plot_confusion_matrices(xgb_cms, ngb_cms, filename):
 
 
 if __name__ == "__main__":
-    print("Generating comparison charts...\n")
+    print("Generating separated comparison charts...\n")
 
     plot_grouped_bar(xgb_data, 'XGBoost: No GAN vs Standard GAN vs CGAN', 'xgboost_all_metrics.png')
     plot_grouped_bar(ngb_data, 'NGBoost: No GAN vs Standard GAN vs CGAN', 'ngboost_all_metrics.png')
-    plot_fraud_focus(xgb_data, ngb_data, 'fraud_detection_focus.png')
-    plot_accuracy_comparison(xgb_data, ngb_data, 'accuracy_comparison.png')
-    plot_confusion_matrices(xgb_cm, ngb_cm, 'confusion_matrices.png')
+    
+    # Separated specific charts
+    plot_fraud_focus_single(xgb_data, 'XGBoost', 'xgboost_fraud_detection_focus.png')
+    plot_fraud_focus_single(ngb_data, 'NGBoost', 'ngboost_fraud_detection_focus.png')
+    
+    plot_accuracy_comparison_single(xgb_data, 'XGBoost', 'xgboost_accuracy_comparison.png')
+    plot_accuracy_comparison_single(ngb_data, 'NGBoost', 'ngboost_accuracy_comparison.png')
+    
+    plot_confusion_matrices_single(xgb_cm, 'XGBoost', 'xgboost_confusion_matrices.png')
+    plot_confusion_matrices_single(ngb_cm, 'NGBoost', 'ngboost_confusion_matrices.png')
 
-    print(f"\nAll charts saved to: {OUTPUT_DIR}")
+    print(f"\nAll separated charts saved to: {OUTPUT_DIR}")

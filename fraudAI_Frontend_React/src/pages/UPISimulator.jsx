@@ -162,9 +162,9 @@ const UPISimulator = ({ user, onLogin }) => {
     const getRiskConfig = (riskLevel) => {
         const configs = {
             HIGH: {
-                bg: 'bg-gradient-to-r from-red-500/20 to-red-600/20',
-                border: 'border-red-500',
-                text: 'text-red-400',
+                bg: 'bg-red-50',
+                border: 'border-red-200',
+                text: 'text-red-600',
                 icon: (
                     <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -173,9 +173,9 @@ const UPISimulator = ({ user, onLogin }) => {
                 badge: 'risk-high'
             },
             MEDIUM: {
-                bg: 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20',
-                border: 'border-yellow-500',
-                text: 'text-yellow-400',
+                bg: 'bg-amber-50',
+                border: 'border-amber-200',
+                text: 'text-amber-600',
                 icon: (
                     <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -184,9 +184,9 @@ const UPISimulator = ({ user, onLogin }) => {
                 badge: 'risk-medium'
             },
             LOW: {
-                bg: 'bg-gradient-to-r from-green-500/20 to-emerald-500/20',
-                border: 'border-green-500',
-                text: 'text-green-400',
+                bg: 'bg-green-50',
+                border: 'border-green-200',
+                text: 'text-green-600',
                 icon: (
                     <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -233,10 +233,10 @@ const UPISimulator = ({ user, onLogin }) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4 brand-font">
                         UPI Transaction Simulator
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-slate-600 max-w-2xl mx-auto">
                         Simulate real UPI payments and get instant fraud risk assessment with explainable AI
                     </p>
                 </motion.div>
@@ -261,8 +261,8 @@ const UPISimulator = ({ user, onLogin }) => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h2 className="text-3xl font-bold text-white mb-2">Payment Successful!</h2>
-                                <p className="text-gray-400">₹{amount} sent to {recipientUpi}</p>
+                                <h2 className="text-3xl font-bold text-slate-800 mb-2 brand-font">Payment Successful!</h2>
+                                <p className="text-slate-600">₹{amount} sent to {recipientUpi}</p>
                             </motion.div>
                         </motion.div>
                     )}
@@ -274,23 +274,23 @@ const UPISimulator = ({ user, onLogin }) => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="glass rounded-2xl p-8"
+                        className="glass-card rounded-2xl p-8 border border-slate-200"
                     >
-                        <h2 className="text-2xl font-bold text-white mb-6 flex items-center space-x-2">
-                            <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center space-x-2 brand-font">
+                            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                             <span>New Transaction</span>
                         </h2>
 
                         {/* Sender Info */}
-                        <div className="mb-6 p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
-                            <div className="text-sm text-gray-400 mb-1">Sending From</div>
+                        <div className="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+                            <div className="text-sm text-slate-500 mb-1 font-medium">Sending From</div>
                             <div className="flex items-center space-x-3">
-                                <img src={user.photoURL} alt="Profile" className="w-10 h-10 rounded-full border-2 border-purple-500/30" />
+                                <img src={user.photoURL} alt="Profile" className="w-10 h-10 rounded-full border-2 border-blue-300" />
                                 <div>
-                                    <div className="text-white font-semibold">{user.displayName}</div>
-                                    <div className="text-purple-400 text-sm">{userUpi || `${user.email.split('@')[0]}@safepay`}</div>
+                                    <div className="text-slate-800 font-semibold">{user.displayName}</div>
+                                    <div className="text-blue-600 text-sm font-medium">{userUpi || `${user.email.split('@')[0]}@safepay`}</div>
                                 </div>
                             </div>
                         </div>
@@ -298,25 +298,25 @@ const UPISimulator = ({ user, onLogin }) => {
                         {/* Form Fields */}
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-gray-400 text-sm mb-2">Recipient UPI ID</label>
+                                <label className="block text-slate-600 text-sm mb-2 font-medium">Recipient UPI ID</label>
                                 <input
                                     type="text"
                                     value={recipientUpi}
                                     onChange={(e) => setRecipientUpi(e.target.value)}
                                     placeholder="user@paytm"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+                                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-gray-400 text-sm mb-2">Amount (₹)</label>
+                                <label className="block text-slate-600 text-sm mb-2 font-medium">Amount (₹)</label>
                                 <input
                                     type="number"
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     placeholder="Enter amount"
                                     min="1"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 text-2xl font-bold"
+                                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-2xl font-bold"
                                 />
                             </div>
 
@@ -353,10 +353,10 @@ const UPISimulator = ({ user, onLogin }) => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="glass rounded-2xl p-8"
+                        className="glass-card rounded-2xl p-8 border border-slate-200"
                     >
-                        <h2 className="text-2xl font-bold text-white mb-6 flex items-center space-x-2">
-                            <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center space-x-2 brand-font">
+                            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                             <span>Risk Assessment</span>
@@ -371,13 +371,13 @@ const UPISimulator = ({ user, onLogin }) => {
                                     exit={{ opacity: 0, y: -20 }}
                                 >
                                     {/* Risk Banner */}
-                                    <div className={`${getRiskConfig(result.risk_level).bg} ${getRiskConfig(result.risk_level).border} border rounded-xl p-6 mb-6`}>
+                                    <div className={`${getRiskConfig(result.risk_level).bg} ${getRiskConfig(result.risk_level).border} border rounded-xl p-6 mb-6 shadow-sm`}>
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <div className={`text-3xl font-bold ${getRiskConfig(result.risk_level).text}`}>
+                                                <div className={`text-3xl font-bold brand-font ${getRiskConfig(result.risk_level).text}`}>
                                                     {result.risk_level} RISK
                                                 </div>
-                                                <div className="text-gray-400 mt-1">{result.status}</div>
+                                                <div className="text-slate-600 mt-1 font-medium">{result.status}</div>
                                             </div>
                                             <div className={`${getRiskConfig(result.risk_level).text}`}>
                                                 {getRiskConfig(result.risk_level).icon}
@@ -388,16 +388,16 @@ const UPISimulator = ({ user, onLogin }) => {
                                     {/* Fraud Score */}
                                     <div className="mb-6">
                                         <div className="flex justify-between text-sm mb-2">
-                                            <span className="text-gray-400">Fraud Probability</span>
-                                            <span className="text-white font-mono">{(result.fraud_score * 100).toFixed(1)}%</span>
+                                            <span className="text-slate-600 font-medium">Fraud Probability</span>
+                                            <span className="text-slate-800 font-bold font-mono">{(result.fraud_score * 100).toFixed(1)}%</span>
                                         </div>
-                                        <div className="h-3 bg-gray-700/50 rounded-full overflow-hidden">
+                                        <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 animate={{ width: `${result.fraud_score * 100}%` }}
                                                 transition={{ duration: 0.6, ease: "easeOut" }}
                                                 className={`h-full rounded-full ${result.fraud_score >= 0.85 ? 'bg-gradient-to-r from-red-500 to-red-400' :
-                                                        result.fraud_score >= 0.60 ? 'bg-gradient-to-r from-yellow-500 to-orange-400' : 'bg-gradient-to-r from-green-500 to-emerald-400'
+                                                        result.fraud_score >= 0.60 ? 'bg-gradient-to-r from-amber-500 to-orange-400' : 'bg-gradient-to-r from-emerald-500 to-green-400'
                                                     }`}
                                             />
                                         </div>
@@ -405,14 +405,14 @@ const UPISimulator = ({ user, onLogin }) => {
 
                                     {/* Explanation */}
                                     <div className="mb-6">
-                                        <h3 className="text-white font-semibold mb-2">AI Explanation</h3>
-                                        <p className="text-gray-400 text-sm leading-relaxed">{result.explanation}</p>
+                                        <h3 className="text-slate-800 font-bold mb-2">AI Explanation</h3>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{result.explanation}</p>
                                     </div>
 
                                     {/* SHAP Contributors */}
                                     {result.shap_contributors && result.shap_contributors.length > 0 && (
                                         <div className="mb-6">
-                                            <h3 className="text-white font-semibold mb-4">Top Risk Factors</h3>
+                                            <h3 className="text-slate-800 font-bold mb-4">Top Risk Factors</h3>
                                             <ShapChart contributors={result.shap_contributors} />
                                         </div>
                                     )}
@@ -476,8 +476,8 @@ const UPISimulator = ({ user, onLogin }) => {
                     transition={{ delay: 0.3 }}
                     className="mt-10"
                 >
-                    <h2 className="text-2xl font-bold text-white mb-2 text-center">⚡ Quick Demo Scenarios</h2>
-                    <p className="text-gray-400 text-center mb-6">
+                    <h2 className="text-2xl font-bold text-slate-800 mb-2 text-center brand-font">⚡ Quick Demo Scenarios</h2>
+                    <p className="text-slate-500 text-center mb-6">
                         Click any scenario to auto-fill and test different fraud patterns
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -495,7 +495,7 @@ const UPISimulator = ({ user, onLogin }) => {
                             return (
                                 <motion.button
                                     key={index}
-                                    whileHover={{ scale: 1.02 }}
+                                    whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => {
                                         setRecipientUpi(scenario.recipient);
@@ -504,19 +504,19 @@ const UPISimulator = ({ user, onLogin }) => {
                                         setError(null);
                                         window.scrollTo({ top: 0, behavior: 'smooth' });
                                     }}
-                                    className={`glass rounded-xl p-4 text-left border ${riskColors[scenario.expected_risk]} transition-all cursor-pointer`}
+                                    className={`glass-card rounded-xl p-4 text-left border ${riskColors[scenario.expected_risk]} transition-all cursor-pointer shadow-sm hover:shadow-md`}
                                 >
                                     <div className="flex items-start justify-between mb-2">
                                         <span className="text-2xl">{scenario.icon}</span>
-                                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${riskBadge[scenario.expected_risk]}`}>
+                                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${riskBadge[scenario.expected_risk]} border ${riskColors[scenario.expected_risk]}`}>
                                             {scenario.expected_risk}
                                         </span>
                                     </div>
-                                    <h3 className="text-white font-semibold text-sm mb-1">{scenario.scenario}</h3>
-                                    <p className="text-gray-500 text-xs mb-2">{scenario.description}</p>
-                                    <div className="flex items-center justify-between text-xs">
-                                        <span className="text-purple-400 font-mono">{scenario.recipient}</span>
-                                        <span className="text-gray-400">₹{scenario.amount.toLocaleString()}</span>
+                                    <h3 className="text-slate-800 font-bold text-sm mb-1">{scenario.scenario}</h3>
+                                    <p className="text-slate-500 text-xs mb-2 font-medium">{scenario.description}</p>
+                                    <div className="flex items-center justify-between text-xs font-medium">
+                                        <span className="text-blue-600 font-mono">{scenario.recipient}</span>
+                                        <span className="text-emerald-600 font-bold">₹{scenario.amount.toLocaleString()}</span>
                                     </div>
                                 </motion.button>
                             );
