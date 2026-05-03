@@ -1,4 +1,4 @@
-# SafePayAI - Real-Time UPI Fraud Detection System
+# Real-Time UPI Fraud Detection System
 
 A full-stack fintech application for real-time UPI fraud detection using ML models with SHAP explainability.
 
