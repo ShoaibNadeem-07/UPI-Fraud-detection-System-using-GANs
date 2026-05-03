@@ -1,0 +1,347 @@
+{
+    "merchants": {
+        "verified": [
+            {
+                "upi_id": "netflix@hdfc",
+                "name": "Netflix India",
+                "category": "Entertainment",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "amazon@apl",
+                "name": "Amazon Pay",
+                "category": "E-commerce",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "flipkart@icici",
+                "name": "Flipkart",
+                "category": "E-commerce",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "swiggy@paytm",
+                "name": "Swiggy",
+                "category": "Food Delivery",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "zomato@hdfcbank",
+                "name": "Zomato",
+                "category": "Food Delivery",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "uber@icici",
+                "name": "Uber India",
+                "category": "Transport",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "ola@ybl",
+                "name": "Ola Cabs",
+                "category": "Transport",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "jio@icici",
+                "name": "Jio Prepaid",
+                "category": "Telecom",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "airtel@okaxis",
+                "name": "Airtel",
+                "category": "Telecom",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            },
+            {
+                "upi_id": "hotstar@hdfc",
+                "name": "Disney+ Hotstar",
+                "category": "Entertainment",
+                "risk_score": 0.0,
+                "verified": true,
+                "complaints": 0
+            }
+        ],
+        "recently_registered": [
+            {
+                "upi_id": "newshop2026@paytm",
+                "name": "New Shop 2026",
+                "category": "Retail",
+                "risk_score": 0.3,
+                "verified": false,
+                "account_age_days": 15,
+                "complaints": 0
+            },
+            {
+                "upi_id": "quickmart@ybl",
+                "name": "Quick Mart",
+                "category": "Grocery",
+                "risk_score": 0.25,
+                "verified": false,
+                "account_age_days": 30,
+                "complaints": 1
+            },
+            {
+                "upi_id": "freshveggies@okaxis",
+                "name": "Fresh Veggies",
+                "category": "Grocery",
+                "risk_score": 0.2,
+                "verified": false,
+                "account_age_days": 45,
+                "complaints": 0
+            }
+        ]
+    },
+    "individuals": {
+        "trusted": [
+            {
+                "upi_id": "rahul.sharma@okaxis",
+                "name": "Rahul Sharma",
+                "trust_score": 95,
+                "account_age_days": 1200,
+                "fraud_flags": 0,
+                "avg_transaction": 2500
+            },
+            {
+                "upi_id": "priya.patel@ybl",
+                "name": "Priya Patel",
+                "trust_score": 90,
+                "account_age_days": 900,
+                "fraud_flags": 0,
+                "avg_transaction": 1800
+            },
+            {
+                "upi_id": "amit.kumar@paytm",
+                "name": "Amit Kumar",
+                "trust_score": 88,
+                "account_age_days": 1500,
+                "fraud_flags": 0,
+                "avg_transaction": 3500
+            },
+            {
+                "upi_id": "sneha.reddy@icici",
+                "name": "Sneha Reddy",
+                "trust_score": 92,
+                "account_age_days": 800,
+                "fraud_flags": 0,
+                "avg_transaction": 2000
+            }
+        ],
+        "new_users": [
+            {
+                "upi_id": "newuser123@ybl",
+                "name": "New User",
+                "trust_score": 50,
+                "account_age_days": 7,
+                "fraud_flags": 0,
+                "avg_transaction": 500
+            },
+            {
+                "upi_id": "firsttimer@paytm",
+                "name": "First Timer",
+                "trust_score": 45,
+                "account_age_days": 3,
+                "fraud_flags": 0,
+                "avg_transaction": 200
+            }
+        ]
+    },
+    "suspicious": {
+        "phishing_ids": [
+            {
+                "upi_id": "netf1ix@unknown",
+                "name": "Fake Netflix",
+                "impersonating": "netflix@hdfc",
+                "risk_score": 0.95,
+                "complaints": 45,
+                "fraud_type": "phishing"
+            },
+            {
+                "upi_id": "amaz0n@suspicious",
+                "name": "Fake Amazon",
+                "impersonating": "amazon@apl",
+                "risk_score": 0.92,
+                "complaints": 38,
+                "fraud_type": "phishing"
+            },
+            {
+                "upi_id": "flipkart.refund@unknown",
+                "name": "Fake Flipkart Refund",
+                "impersonating": "flipkart@icici",
+                "risk_score": 0.90,
+                "complaints": 25,
+                "fraud_type": "refund_scam"
+            },
+            {
+                "upi_id": "swlggy@fake",
+                "name": "Fake Swiggy",
+                "impersonating": "swiggy@paytm",
+                "risk_score": 0.88,
+                "complaints": 20,
+                "fraud_type": "phishing"
+            }
+        ],
+        "blacklisted": [
+            {
+                "upi_id": "scammer001@ybl",
+                "name": "Blocked User 1",
+                "risk_score": 1.0,
+                "complaints": 150,
+                "fraud_count": 45,
+                "blocked_date": "2025-06-15",
+                "fraud_type": "multiple"
+            },
+            {
+                "upi_id": "fraudster@paytm",
+                "name": "Blocked User 2",
+                "risk_score": 1.0,
+                "complaints": 89,
+                "fraud_count": 28,
+                "blocked_date": "2025-08-22",
+                "fraud_type": "money_mule"
+            },
+            {
+                "upi_id": "hacker123@unknown",
+                "name": "Blocked User 3",
+                "risk_score": 1.0,
+                "complaints": 200,
+                "fraud_count": 67,
+                "blocked_date": "2025-11-10",
+                "fraud_type": "account_takeover"
+            }
+        ],
+        "high_risk": [
+            {
+                "upi_id": "crypto.trader@suspicious",
+                "name": "Crypto Trader",
+                "risk_score": 0.75,
+                "complaints": 8,
+                "avg_transaction": 150000,
+                "fraud_type": "potential_money_laundering"
+            },
+            {
+                "upi_id": "lottery.winner@unknown",
+                "name": "Lottery Scam",
+                "risk_score": 0.85,
+                "complaints": 15,
+                "fraud_type": "lottery_scam"
+            },
+            {
+                "upi_id": "kbc.prize@fake",
+                "name": "KBC Prize Scam",
+                "risk_score": 0.90,
+                "complaints": 50,
+                "fraud_type": "prize_scam"
+            },
+            {
+                "upi_id": "olx.buyer@unknown",
+                "name": "OLX Scammer",
+                "risk_score": 0.80,
+                "complaints": 12,
+                "fraud_type": "advance_payment_fraud"
+            }
+        ]
+    },
+    "fraud_scenarios": [
+        {
+            "scenario": "Normal Netflix Subscription",
+            "sender": "rahul.sharma@okaxis",
+            "recipient": "netflix@hdfc",
+            "amount": 649,
+            "expected_risk": "LOW",
+            "description": "Regular monthly subscription payment"
+        },
+        {
+            "scenario": "Phishing Attack - Fake Netflix",
+            "sender": "rahul.sharma@okaxis",
+            "recipient": "netf1ix@unknown",
+            "amount": 649,
+            "expected_risk": "HIGH",
+            "description": "Payment to phishing ID impersonating Netflix"
+        },
+        {
+            "scenario": "High Value to New Merchant",
+            "sender": "amit.kumar@paytm",
+            "recipient": "newshop2026@paytm",
+            "amount": 50000,
+            "expected_risk": "MEDIUM",
+            "description": "Large payment to recently registered merchant"
+        },
+        {
+            "scenario": "Payment to Blacklisted ID",
+            "sender": "priya.patel@ybl",
+            "recipient": "scammer001@ybl",
+            "amount": 5000,
+            "expected_risk": "HIGH",
+            "description": "Attempted payment to known fraudster"
+        },
+        {
+            "scenario": "Trusted P2P Transfer",
+            "sender": "rahul.sharma@okaxis",
+            "recipient": "priya.patel@ybl",
+            "amount": 2000,
+            "expected_risk": "LOW",
+            "description": "Transfer between trusted users"
+        },
+        {
+            "scenario": "New User Large Transaction",
+            "sender": "newuser123@ybl",
+            "recipient": "crypto.trader@suspicious",
+            "amount": 100000,
+            "expected_risk": "HIGH",
+            "description": "New account sending large sum to suspicious ID"
+        },
+        {
+            "scenario": "KBC Prize Scam",
+            "sender": "sneha.reddy@icici",
+            "recipient": "kbc.prize@fake",
+            "amount": 10000,
+            "expected_risk": "HIGH",
+            "description": "Payment for fake lottery/prize claim"
+        },
+        {
+            "scenario": "OLX Advance Payment Fraud",
+            "sender": "amit.kumar@paytm",
+            "recipient": "olx.buyer@unknown",
+            "amount": 25000,
+            "expected_risk": "HIGH",
+            "description": "Advance payment for OLX listing scam"
+        },
+        {
+            "scenario": "Food Delivery Normal",
+            "sender": "priya.patel@ybl",
+            "recipient": "swiggy@paytm",
+            "amount": 450,
+            "expected_risk": "LOW",
+            "description": "Regular food delivery payment"
+        },
+        {
+            "scenario": "Suspicious Amount Pattern",
+            "sender": "rahul.sharma@okaxis",
+            "recipient": "netflix@hdfc",
+            "amount": 64900,
+            "expected_risk": "MEDIUM",
+            "description": "Abnormally high amount for streaming service"
+        }
+    ]
+}

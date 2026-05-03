@@ -1,0 +1,155 @@
+================================================================================
+  GAN COMPARISON REPORT: No GAN vs Standard GAN vs CGAN
+================================================================================
+
+
+========================
+  PART 1: XGBoost Model
+========================
+
+--- No GAN (Raw Imbalanced Dataset, XGBoost) ---
+Accuracy: 90.86%
+              precision    recall  f1-score   support
+
+           0       0.91      1.00      0.95      1984
+           1       0.83      0.09      0.16       216
+
+    accuracy                           0.91      2200
+   macro avg       0.87      0.54      0.56      2200
+weighted avg       0.90      0.91      0.87      2200
+
+Confusion Matrix:
+[[1980    4]
+ [ 197   19]]
+
+--- Standard GAN-Balanced Dataset (XGBoost) ---
+Accuracy: 84.00%
+              precision    recall  f1-score   support
+
+           0       0.80      0.91      0.85      1994
+           1       0.90      0.77      0.83      2006
+
+    accuracy                           0.84      4000
+   macro avg       0.85      0.84      0.84      4000
+weighted avg       0.85      0.84      0.84      4000
+
+Confusion Matrix:
+[[1817  177]
+ [ 463 1543]]
+
+--- CGAN-Balanced Dataset (XGBoost) ---
+Accuracy: 87.83%
+              precision    recall  f1-score   support
+
+           0       0.85      0.91      0.88      2005
+           1       0.91      0.84      0.87      1995
+
+    accuracy                           0.88      4000
+   macro avg       0.88      0.88      0.88      4000
+weighted avg       0.88      0.88      0.88      4000
+
+Confusion Matrix:
+[[1830  175]
+ [ 312 1683]]
+
+--- XGBoost SIDE-BY-SIDE COMPARISON ---
+
+Metric                          No GAN      Std GAN         CGAN     
+-------------------------------------------------------------------------
+Accuracy                        90.86%       84.00%       87.83%   
+Precision (Legit)               90.95%       79.69%       85.43%   
+Recall (Legit)                  99.80%       91.12%       91.27%   
+F1-Score (Legit)                95.17%       85.03%       88.26%   
+Precision (Fraud)               82.61%       89.71%       90.58%     
+Recall (Fraud)                   8.80%       76.92%       84.36%     
+F1-Score (Fraud)                15.90%       82.82%       87.36%     
+-------------------------------------------------------------------------
+
+
+========================
+  PART 2: NGBoost Model
+========================
+
+--- No GAN (Raw Imbalanced Dataset, NGBoost) ---
+Accuracy: 90.18%
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95      1984
+           1       0.00      0.00      0.00       216
+
+    accuracy                           0.90      2200
+   macro avg       0.45      0.50      0.47      2200
+weighted avg       0.81      0.90      0.86      2200
+
+Confusion Matrix:
+[[1984    0]
+ [ 216    0]]
+
+--- Standard GAN-Balanced Dataset (NGBoost) ---
+Accuracy: 77.08%
+              precision    recall  f1-score   support
+
+           0       0.71      0.90      0.80      1994
+           1       0.87      0.64      0.74      2006
+
+    accuracy                           0.77      4000
+   macro avg       0.79      0.77      0.77      4000
+weighted avg       0.79      0.77      0.77      4000
+
+Confusion Matrix:
+[[1793  201]
+ [ 716 1290]]
+
+--- CGAN-Balanced Dataset (NGBoost) ---
+Accuracy: 80.00%
+              precision    recall  f1-score   support
+
+           0       0.78      0.83      0.81      2005
+           1       0.82      0.77      0.79      1995
+
+    accuracy                           0.80      4000
+   macro avg       0.80      0.80      0.80      4000
+weighted avg       0.80      0.80      0.80      4000
+
+Confusion Matrix:
+[[1667  338]
+ [ 462 1533]]
+
+--- NGBoost SIDE-BY-SIDE COMPARISON ---
+
+Metric                          No GAN      Std GAN         CGAN     
+-------------------------------------------------------------------------
+Accuracy                        90.18%       77.08%       80.00%
+Precision (Legit)               90.18%       71.46%       78.30%   
+Recall (Legit)                 100.00%       89.92%       83.14%   
+F1-Score (Legit)                94.84%       79.64%       80.65%   
+Precision (Fraud)                0.00%       86.52%       81.93%  
+Recall (Fraud)                   0.00%       64.31%       76.84%   
+F1-Score (Fraud)                 0.00%       73.78%       79.31%    
+-------------------------------------------------------------------------
+
+
+
+================================================================================
+  OVERALL CONCLUSION
+================================================================================
+
+Ranking: CGAN > Standard GAN > No GAN (Imbalanced)
+
+- No GAN: High overall accuracy is misleading due to class imbalance.
+  The model is biased towards the majority class (legitimate), resulting
+  in poor fraud recall. XGBoost catches only 8.80% of frauds, and
+  NGBoost catches 0% — predicting every transaction as legitimate.
+
+- Standard GAN: Balancing the dataset significantly improves fraud recall
+  (77% XGBoost, 64% NGBoost), but synthetic data quality is lower because
+  the generator learns a blended distribution without class awareness.
+
+- CGAN: Best overall — conditions on class labels during generation,
+  allowing it to learn the specific distribution of fraudulent transactions.
+  Achieves highest fraud recall (84% XGBoost, 77% NGBoost) and best
+  fraud F1-score across both models.
+
+Key Insight: CGAN's conditional architecture produces targeted, class-pure
+synthetic fraud samples, while Standard GAN generates data contaminated with
+legitimate transaction patterns due to its lack of class awareness.

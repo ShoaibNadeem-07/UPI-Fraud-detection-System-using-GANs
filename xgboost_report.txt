@@ -1,0 +1,15 @@
+XGBoost Accuracy: 83.60%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.79      0.90      0.84      1960
+           1       0.89      0.77      0.83      2040
+
+    accuracy                           0.84      4000
+   macro avg       0.84      0.84      0.84      4000
+weighted avg       0.84      0.84      0.84      4000
+
+Confusion Matrix:
+[[1768  192]
+ [ 464 1576]]
